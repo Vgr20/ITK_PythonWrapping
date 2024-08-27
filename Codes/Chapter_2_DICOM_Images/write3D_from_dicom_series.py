@@ -1,6 +1,6 @@
 import itk
 import os
-import matplotlib.pyplot as plt
+
 
 def convert_2d_3d(input_dir,series=0,dim=3):
     # Define the pixel type and dimension

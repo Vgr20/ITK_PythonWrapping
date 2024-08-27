@@ -1,4 +1,6 @@
-import os
+# Simpler high-level function
+# Not suitable for complex pipeline where default configration should change
+
 import itk
 import matplotlib.pyplot as plt
 

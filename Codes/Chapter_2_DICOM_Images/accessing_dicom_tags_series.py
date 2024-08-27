@@ -1,6 +1,15 @@
+# ITK internally queries GDCM and obtains all the DICOM tags from the file
+# headers. The tag values are stored in the MetaDataDictionary
+# which is a general-purpose container for \{key,value\} pairs. The Metadata
+# dictionary can be recovered from any ImageIO class by invoking the
+# GetMetaDataDictionary() method.
+
+# All the dicom files names in one dicom series can be obtained
+# using GDCMSeriesFileNames class and GetInputFileNames() method.
+
 import itk
 
-def read_series_of_images_tags(input_dir):
+def read_series_of_slices_tags(input_dir):
     # Setup the image readers with their type
     PixelType = itk.ctype("signed short")
     Dimension = 3
@@ -29,23 +38,16 @@ def read_series_of_images_tags(input_dir):
     except:
         print("Error occured while reading DICOMs in: " + input_dir)
 
-    # ITK internally queries GDCM and obtains all the DICOM tags from the file
-    # headers. The tag values are stored in the MetaDataDictionary
-    # which is a general-purpose container for \{key,value\} pairs. The Metadata
-    # dictionary can be recovered from any ImageIO class by invoking the
-    # GetMetaDataDictionary() method.
     metadata = dicomIO.GetMetaDataDictionary()
 
     # Print the key value pairs from the metadadictionary
     tagkeys = metadata.GetKeys()
 
     for tagkey in tagkeys:
-        # Note the [] operator for the key
         try:
             tagvalue = metadata[tagkey]
             print(tagkey + "=" + str(tagvalue))
         except RuntimeError:
-            # Cannot pass specialized values into metadata dictionary.
             print("Cannot pass specialized value" + tagkey + "into metadadictionary")
 
     print("\n########################\n\n###########################\n")
@@ -63,4 +65,4 @@ def read_series_of_images_tags(input_dir):
             print(label[1] + " (" + entryID + ") is: " + str(tagvalue))
 
 input_dir = "./images/DICOMSeries"
-read_series_of_images_tags(input_dir=input_dir)        
+read_series_of_slices_tags(input_dir=input_dir)        

@@ -1,7 +1,4 @@
 import itk
-import os
-import matplotlib.pyplot as plt
-
 
 def update_header(input_file,output_file,entry_id,value):
     InputPixelType = itk.SS  # short
@@ -41,7 +38,7 @@ def update_header(input_file,output_file,entry_id,value):
 
 input_file = "./images/OneDrive_2024-08-17/IM-0001-0031.dcm"
 output_file = "./images/OneDrive_2024-08-17/metadata_changed/Metadata_changed_IM-0001-0031.dcm"
-entry_id = "0010|0010"
-value = "Asini Jayakody"
+entry_id = "0010|0010"  # patient name tag
+value = "Asini Jayakody" # new patient name
 
 update_header(input_file,output_file,entry_id,value)
