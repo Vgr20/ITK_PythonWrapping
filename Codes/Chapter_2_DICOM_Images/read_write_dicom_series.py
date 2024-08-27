@@ -1,6 +1,8 @@
+# SetInputDirectory() method gets both read file names and write file names
+# SetDirectory() method only gets read file name
+
 import itk
 import os
-import matplotlib.pyplot as plt
 
 def convert_3d_to_2d_dicom(input_dir, output_dir):
     # Define types

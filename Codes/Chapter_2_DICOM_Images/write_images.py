@@ -1,7 +1,6 @@
 import itk
-import os
-import matplotlib.pyplot as plt
 
+# reading the input image
 input_file = './images/DICOM'
 
 input_pixel_type = itk.SS
@@ -11,13 +10,18 @@ input_img_type = itk.Image[input_pixel_type,input_dim]
 reader = itk.ImageFileReader[input_img_type].New()
 reader.SetFileName(input_file)
 
+# Read the image
+try:
+    reader.Update()
+except Exception as e:
+    print("Exception in file reader:", e)
+
 output_dcm_file_original = "./images/output_dcm_file_original.dcm"
 output_rescaled_dcm_file = "./images/output_rescaled_dcm_file.dcm"
 output_jpeg_file = "./images/output_jpeg_file.jpg"
 
-gdcmImageIO = itk.GDCMImageIO.New()
-
 # create a writer to save image back to DICOM file
+gdcmImageIO = itk.GDCMImageIO.New()
 writer1Type = itk.ImageFileWriter[input_img_type]
 writer1 = writer1Type.New()
 writer1.SetFileName(output_dcm_file_original)
@@ -29,7 +33,7 @@ try:
 except Exception as e:
     print("Exception in file writer:", e)
 
-# Rescale the image intensity
+# Rescale the image intensity and writing back to jpeg image
 write_pixel_type = itk.UC
 write_img_type = itk.Image[write_pixel_type,input_dim]
 rescale_filter_type = itk.RescaleIntensityImageFilter[input_img_type,write_img_type]

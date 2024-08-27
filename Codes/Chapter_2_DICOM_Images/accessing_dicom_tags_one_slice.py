@@ -1,5 +1,11 @@
+# ITK internally queries GDCM and obtains all the DICOM tags from the file
+# headers. The tag values are stored in the MetaDataDictionary
+# which is a general-purpose container for \{key,value\} pairs. The Metadata
+# dictionary can be recovered from any ImageIO class by invoking the
+# GetMetaDataDictionary() method.
+
+
 import itk
-import os
 import matplotlib.pyplot as plt
 
 def read_tags(input_file,plot=True):
@@ -40,6 +46,7 @@ def read_tags(input_file,plot=True):
 
     print("\n########################\n\n###########################\n")
 
+    #printing important dicom tags
     entryIDs = ["0010|0010","0010|0020","0008|1030","0008|103e","0008|0021","0020|000d","0020|000e","0020|0013","7fe0|0010"]
 
     for entryID in entryIDs:
