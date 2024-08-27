@@ -1,5 +1,7 @@
+# Flexible more controbale  class
+# Suitable for complex pipelines
+
 import itk
-import os
 import matplotlib.pyplot as plt
 
 input_file = "./images/Vida_Head.MR.Comp_DR-Gain_DR.1005.1.2021.04.27.14.20.13.818.14380335.dcm"
