@@ -15,3 +15,4 @@
  3. Edge Preserving Smoothing in Vector Images
    a) Vector Gradient Anisotropic Diffusion
    b) Vector Curvature Anisotropic Diffusion
+
